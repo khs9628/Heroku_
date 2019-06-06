@@ -1,0 +1,23 @@
+{% extends 'crud/layout.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-12">        
+    <h1>New HashTag</h1>
+</div>
+
+    {{ error_message }}
+    <br>
+    <form method='POST'>
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+       &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <input class="btn btn-dark" type="submit" value="작성하기">
+    </form>
+</div>
+
+</div>
+{% endblock %}

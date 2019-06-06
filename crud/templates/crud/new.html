@@ -1,0 +1,22 @@
+{% extends 'crud/layout.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-12">        
+    <h1>게시판 글쓰기</h1>
+</div>
+
+    
+    <form method='POST' enctype ="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+       &nbsp;  &nbsp;  &nbsp;  &nbsp;
+       <input class="btn btn-dark" type="submit" value="작성하기">
+    </form>
+</div>
+
+</div>
+{% endblock %}

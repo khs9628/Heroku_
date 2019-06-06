@@ -1,0 +1,62 @@
+{% extends 'crud/layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+        
+        <div class="card mb-4 py-3 border-bottom-warning">
+                <div class="card-body">
+                      {% for hashtag in blog.hashtags.all %}
+                      <span style="color : cornflowerblue">{{ hashtag.name }}</span>
+                      {% endfor %}
+                      <br>
+                      
+                      {% if blog.image %}
+                        <img class="card-img-top" src= "{{ blog.image.url }}" alt ="Card img cap" style="width: 300px; height: 300px">
+                      {% endif %}
+                        <h1> 글 제목 : {{ blog.title }}</h1>
+                        <h2> 글 내용 : {{ blog.body }} </h2>
+                        <p> 만든 날짜 : {{ blog.pub_date }}</p>
+                        <a href="{%url 'crud:edit' pk=blog.pk %}" class="btn btn-success btn-circle">
+                            <i class="fas fa-check"></i>
+                        </a>
+                        <a href="{%url 'crud:remove' pk=blog.pk%}" class="btn btn-danger btn-circle">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                </div>
+            
+                    
+        </div>
+        <br>
+        <div class="row">
+        {% for comment in blog.comments.all %}
+        
+        <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">댓글</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ comment.comment_text }}</div>
+                      </div>
+                      <div class="col-auto">
+                            <a href="{%url 'crud:comment_update' pk=comment.pk %}" class="btn btn-success btn-circle">
+                                    <i class="fas fa-check"></i>
+                                  </a>
+                            <a href="{%url 'crud:comment_delete' pk=comment.pk %}" class="btn btn-danger btn-circle">
+                                        <i class="fas fa-trash"></i>
+                            </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+        {% endfor %}
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    
+{% endblock %}
