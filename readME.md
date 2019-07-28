@@ -37,6 +37,6 @@ DATABASES['default'].update(db_from_env)
 
 #### url 주소
 [![현수쓰](/static/img/logo.jpg)](https://khs9628board.herokuapp.com)
-https://khs9628board.herokuapp.com
+https://khs9628.herokuapp.com
 
 ### 하루를 기록하다 :feet:
